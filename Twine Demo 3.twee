@@ -1,0 +1,199 @@
+:: StoryTitle
+Twine Minigame 3
+
+
+:: StoryData
+{
+  "ifid": "031E92F7-A9EA-410B-88AB-A8EFC3CBDB29",
+  "format": "SugarCube",
+  "format-version": "2.37.3",
+  "start": "Start",
+  "zoom": 1
+}
+
+
+:: \ choices {"position":"925,600","size":"100,100"}
+
+
+
+:: \ decision {"position":"1050,575","size":"100,100"}
+
+
+
+:: Start {"position":"800,325","size":"100,100"}
+!Welcome to the nightmare world
+//You randomly wake up in a world where everything seems __strange__. You are tasked by an unknown human to craft a prestihatitator or else you will be subjedct to death.//
+<<set $wood to 0>>
+<<set $stone to 0>>
+<<set $stick to 0>>
+<<set $spear to 0>>
+[img[https://i.postimg.cc/k45sNyFP/Prestihatitator.jpg]]
+<<set $tophat to 0>>
+<<set $rabbitcorpse to 0>>
+<<set $board to 0>>
+You must gather the resources to craft a prestihatitator. When you believe you have adequate resources try to craft and se if you are successful. There are many dangers in this world. Be careful.
+
+Punch down a [[tree]]
+Fight a mysterious [[boar]]
+Fight a mysterious boar with a [[top hat]]
+Grab a [[stone]] off the ground
+chase a [[rabbit]]
+Inspect a [[spider nest]]
+Grab a [[stick]] off the ground
+
+<!-- This game is inspired by one of my favorite games of all time: Don't starve -->
+
+
+:: boar {"position":"925,450","size":"100,100"}
+[img[https://i.postimg.cc/44P7RgGk/boar.png]]
+<<if $spear <1 >>
+You fight the boar with all your might but you are overpowered. You [[run away -> decision]] in shame.
+<!-- These pigs are usually friendly unless you attack them first. -->
+<<else>>
+You poke the boar but he has tough skin. Your spear breaks in the process and you have now lost your spear. 
+
+<<set $spear to $spear -1>>
+Make another [[decision]]
+
+<</if>>
+
+
+:: craft {"position":"800,825","size":"100,100"}
+What would you like to craft?
+
+A [[spear]]
+A [[wooden board]]
+A [[prestihatitator]]
+
+
+:: decision {"position":"675,575","size":"100,100"}
+What would you like to do next
+
+Punch down a [[tree]]
+Fight a mysterious [[boar]]
+Fight a mysterious boar with a [[top hat]]
+Grab a [[stone]] off the ground
+chase a [[rabbit]]
+Inspect a [[spider nest]]
+Grab a [[stick]]
+
+Attempt to [[craft]]
+
+
+:: prestihatitator {"position":"675,950","size":"100,100"}
+<<if $rabbitcorpse >=1 and $board >=1 and $tophat >=1>>
+//You have successfully crafted a prestihatitator!//
+[img[https://i.postimg.cc/k45sNyFP/Prestihatitator.jpg]]
+You will now live to see another day. Congratulations
+
+<<else>>
+You do not yet have the encessary materials. A sturdy material is needed for the structure and an animal item is also required. Furthermore, look at the name of the item if you need one more item.
+
+Make another [[decision]]
+<</if>>
+
+
+:: rabbit {"position":"925,700","size":"100,100"}
+<<if $spear < 1>>
+[img[https://i.postimg.cc/sXh1vwTj/rabbit.jpg]]
+You chase the rabbit but are unsuccessful. You have nothing to slay the rabbit with.
+
+Make another [[decision]]
+
+<<else>>
+<<set $rabbitcorpse to $rabbitcorpse +1>>
+You throw your spear and successfully kill the rabbit. You now have $rabbitcorpse rabbit corpse(s).
+<!-- You can't actually do this in the actual game, but I figured I'd include it in mine. -->
+Make another [[decision]]
+<</if>>
+
+
+
+
+:: spear {"position":"800,950","size":"100,100"}
+<<if $stone >=1 and $stick >=2>>
+<<set $spear to $spear +1>>
+You have successfully crafted a spear.
+[img[https://i.postimg.cc/HW4gFHfL/spear.webp]]
+<<set$stone to $stone -1>>
+<<set $stick to $stick -2>>
+You now have $stone piece(s) of stone
+You now have $stick stick(s).
+Make another [[decision]]
+<<else>>
+You do not have enough materials to craft a spear. Stone and sticks are very important when trying to assemble a spear.
+
+Make another [[decision]]
+<</if>>
+
+
+:: spider nest {"position":"675,700","size":"100,100"}
+[img[https://i.postimg.cc/g0Z9sPVW/nest.jpg]]
+Why would you try to inspect a spider's nest without a flame thrower. You very nearly die as you sustain multiple bites.
+
+Make a better [[decision]]
+
+
+:: stick {"position":"550,700","size":"100,100"}
+<<set $stick to $stick +1>>
+[img[https://i.postimg.cc/NfmpdfSY/stick.webp]]
+You now have $stick stick(s).
+
+Make another [[decision]]
+
+<!-- In the actual game these are called twigs. -->
+
+
+:: stone {"position":"800,700","size":"100,100"}
+<<set $stone to $stone +1>>
+[img[https://i.postimg.cc/9QHy0dLK/stone.png]]
+You now have $stone piece(s) of stone
+
+Make another [[decision]]
+
+<!-- In the acutal game these are called flint. -->
+
+
+:: top hat {"position":"675,450","size":"100,100"}
+<<if $spear < 1>>
+[img[https://i.postimg.cc/26gVJYJx/pighat.webp]]
+The pig with the top hat is friendly, but you are simply only able to look at him. Maybe find a way to kill him to steal his top hat.
+
+Make another [[decision]]
+<<else>>
+You stabbed the friendly pig and stole his top hat.
+[img[https://i.postimg.cc/CLsxCbF3/tophat.png]]
+<<set $tophat to $tophat +1>>
+You now have $tophat tophat(s).
+
+Make another [[decision]]
+<</if>>
+
+<!-- In then game you really could give a top hat to a pig. -->
+
+
+:: tree {"position":"800,450","size":"100,100"}
+[img[https://i.postimg.cc/bvZHsvq7/Log.jpg]]
+
+You have gained a piece of wood. 
+
+<<set $wood to $wood +1>>
+
+You now have $wood piece(s) of wood
+
+Make another [[decision]]
+
+
+:: wooden board {"position":"925,950","size":"100,100"}
+<<if $wood >=2>>
+<<set $board to $board +1>>
+<<set $wood to $wood -2>>
+You have successfully crafted a wooden board. They are an important and sturdy material.
+[img[https://i.postimg.cc/3wgSWrjZ/board.webp]]
+You now have $board board(s) and $wood pieces of wood(s).
+
+Make another [[decision]]
+
+<<else>>
+You may need some more peices of wood to craft a board. Make another [[decision]]
+<</if>>
